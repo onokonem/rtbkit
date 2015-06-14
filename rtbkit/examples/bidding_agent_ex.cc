@@ -129,6 +129,11 @@ struct FixedPriceBiddingAgent :
         // that matches its filters.
         config.bidProbability = 0.1;
 
+        // To make this bidding_agent_ex Smaato compatible
+        Json::Value smaatoMap;
+        smaatoMap["seat"] = "123";
+        config.providerConfig["smaato"] = smaatoMap;
+
         // Tell the world about our config. We can change the configuration of
         // an agent at any time by calling this function.
         doConfig(config);
@@ -187,6 +192,7 @@ struct FixedPriceBiddingAgent :
         // Make sure we have 1$ to spend for the next period.
         budgetController.topupTransferSync(config.account, USD(1));
     }
+
 
 
     AgentConfig config;
