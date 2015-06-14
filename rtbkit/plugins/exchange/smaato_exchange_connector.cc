@@ -213,9 +213,7 @@ void getAttr(ExchangeConnector::ExchangeCompatibility & result,
 ExchangeConnector::ExchangeCompatibility
   SmaatoExchangeConnector::
   getCreativeCompatibility(const Creative & creative, bool includeReasons) const {
-    FILELog::ReportingLevel() = logDEBUG3;
-    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
-    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
+    fprintf(stderr, "%s:%d call", __FILE__, __LINE__);
 
     ExchangeCompatibility result;
     result.setCompatible();
