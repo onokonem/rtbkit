@@ -56,7 +56,8 @@ parseBidRequest(HttpAuctionHandler & connection,
                 const std::string & payload)
 {
     FILELog::ReportingLevel() = logDEBUG3;
-    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+" );
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
+    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
     
     std::shared_ptr<BidRequest> none;
 
@@ -151,6 +152,10 @@ ExchangeConnector::ExchangeCompatibility
 SmaatoExchangeConnector::
 getCampaignCompatibility(const AgentConfig & config,
                          bool includeReasons) const {
+    FILELog::ReportingLevel() = logDEBUG3;
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
+    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
+
     ExchangeCompatibility result;
     result.setCompatible();
 
@@ -186,6 +191,10 @@ void getAttr(ExchangeConnector::ExchangeCompatibility & result,
              T & field,
              bool includeReasons) {
 
+    FILELog::ReportingLevel() = logDEBUG3;
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
+    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
+
     try {
         if (!config.isMember(fieldName)) {
             result.setIncompatible
@@ -212,6 +221,10 @@ void getAttr(ExchangeConnector::ExchangeCompatibility & result,
 ExchangeConnector::ExchangeCompatibility
   SmaatoExchangeConnector::
   getCreativeCompatibility(const Creative & creative, bool includeReasons) const {
+    FILELog::ReportingLevel() = logDEBUG3;
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
+    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
+
     ExchangeCompatibility result;
     result.setCompatible();
     
@@ -233,6 +246,10 @@ ExchangeConnector::ExchangeCompatibility
   bidRequestCreativeFilter(const BidRequest & request,
             const AgentConfig & config,
             const void * info) const {
+    FILELog::ReportingLevel() = logDEBUG3;
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
+    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
+
       const auto crinfo = reinterpret_cast<const CreativeInfo*>(info);
 
       // now go through the spots.
@@ -255,6 +272,10 @@ SmaatoExchangeConnector::
 setSeatBid(Auction const & auction,
            int spotNum,
            OpenRTB::BidResponse & response) const {
+
+    FILELog::ReportingLevel() = logDEBUG3;
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
+    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
 
     const Auction::Data * current = auction.getCurrentData();
 
