@@ -15,6 +15,8 @@
 #include <boost/lexical_cast.hpp>
 #include "jml/utils/file_functions.h"
 
+
+#include "log.h"
  
 using namespace std;
 using namespace Datacratic;
@@ -53,11 +55,15 @@ parseBidRequest(HttpAuctionHandler & connection,
                 const HttpHeader & header,
                 const std::string & payload)
 {
+    FILELog::ReportingLevel() = logDEBUG3;
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+" );
+    
     std::shared_ptr<BidRequest> none;
 
     size_t found = header.queryParams.uriEscaped().find(SmaatoExchangeConnector::nobid);
     if (found != string::npos) {
       connection.dropAuction("nobid");
+      FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " nobid requested, returning";
       return none;
     }   
 
