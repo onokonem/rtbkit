@@ -16,6 +16,8 @@
 #include "jml/utils/file_functions.h"
 
 
+#include "log.h"
+ 
 using namespace std;
 using namespace Datacratic;
 
@@ -53,14 +55,16 @@ parseBidRequest(HttpAuctionHandler & connection,
                 const HttpHeader & header,
                 const std::string & payload)
 {
-    fprintf(stderr, "%s:%d call", __FILE__, __LINE__);
+    FILELog::ReportingLevel() = logDEBUG3;
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
+    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
     
     std::shared_ptr<BidRequest> none;
 
     size_t found = header.queryParams.uriEscaped().find(SmaatoExchangeConnector::nobid);
     if (found != string::npos) {
       connection.dropAuction("nobid");
-    fprintf(stderr, "%s:%d nobid", __FILE__, __LINE__);
+      FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " nobid requested, returning";
       return none;
     }   
 
@@ -148,7 +152,9 @@ ExchangeConnector::ExchangeCompatibility
 SmaatoExchangeConnector::
 getCampaignCompatibility(const AgentConfig & config,
                          bool includeReasons) const {
-    fprintf(stderr, "%s:%d call", __FILE__, __LINE__);
+    FILELog::ReportingLevel() = logDEBUG3;
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
+    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
 
     ExchangeCompatibility result;
     result.setCompatible();
@@ -185,7 +191,9 @@ void getAttr(ExchangeConnector::ExchangeCompatibility & result,
              T & field,
              bool includeReasons) {
 
-    fprintf(stderr, "%s:%d call", __FILE__, __LINE__);
+    FILELog::ReportingLevel() = logDEBUG3;
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
+    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
 
     try {
         if (!config.isMember(fieldName)) {
@@ -213,8 +221,10 @@ void getAttr(ExchangeConnector::ExchangeCompatibility & result,
 ExchangeConnector::ExchangeCompatibility
   SmaatoExchangeConnector::
   getCreativeCompatibility(const Creative & creative, bool includeReasons) const {
-    fprintf(stderr, "%s:%d call", __FILE__, __LINE__);
-
+    FILELog::ReportingLevel() = logDEBUG3;
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
+    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
+  
     ExchangeCompatibility result;
     result.setCompatible();
     
@@ -236,7 +246,9 @@ ExchangeConnector::ExchangeCompatibility
   bidRequestCreativeFilter(const BidRequest & request,
             const AgentConfig & config,
             const void * info) const {
-    fprintf(stderr, "%s:%d call", __FILE__, __LINE__);
+    FILELog::ReportingLevel() = logDEBUG3;
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
+    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
 
       const auto crinfo = reinterpret_cast<const CreativeInfo*>(info);
 
@@ -261,7 +273,9 @@ setSeatBid(Auction const & auction,
            int spotNum,
            OpenRTB::BidResponse & response) const {
 
-    fprintf(stderr, "%s:%d call", __FILE__, __LINE__);
+    FILELog::ReportingLevel() = logDEBUG3;
+    Output2FILE::Stream() = fopen("/tmp/smaato_exchange_connector.log", "w+");
+    FILE_LOG(logWARNING) << __FILE__ << ":" << __LINE__ << " call";
 
     const Auction::Data * current = auction.getCurrentData();
 
