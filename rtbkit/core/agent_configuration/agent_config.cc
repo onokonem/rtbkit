@@ -33,7 +33,7 @@ Creative(int width, int height, std::string name, int id, const std::string deal
     Json::Value adomain;
     adomain[0] = "smaato.adomain";
     Json::Value mimeTypes;
-    mimeTypes[0] = "smaato.mimeTypes";
+    mimeTypes[0] = "image/gif";
     Json::Value smaatoMap;
     smaatoMap["adm"] = "smaato.adm";
     smaatoMap["nurl"] = "smaato.nurl";
@@ -116,7 +116,7 @@ const Creative Creative::sampleWS
 const Creative Creative::sampleBB
     (300, 250, "BigBox", 1);
 const Creative Creative::sampleLB
-    (728, 90,  "LeaderBoard", 2);
+    (168, 28,  "LeaderBoard", 2);
 
 bool
 Creative::
