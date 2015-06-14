@@ -30,11 +30,13 @@ Creative::
 Creative(int width, int height, std::string name, int id, const std::string dealId)
     : format(width, height), name(name), id(id), dealId(dealId)
 {
+    Json::Value adomain;
+    adomain[0] = "smaato.adomain";
     Json::Value smaatoMap;
     smaatoMap["adm"] = "smaato.adm";
     smaatoMap["nurl"] = "smaato.nurl";
     smaatoMap["adid"] = "smaato.adid";
-    smaatoMap["adomain"] = "smaato.adomain";
+    smaatoMap["adomain"] = adomain;
     smaatoMap["mimeTypes"] = "smaato.mimeTypes";
     providerConfig["smaato"] = smaatoMap;
 }
