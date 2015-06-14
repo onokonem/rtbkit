@@ -196,6 +196,7 @@ init()
     }
 
     router->setBanker(banker);
+    LOG(print) << "bindTcp" << endl;
     router->bindTcp();
 }
 
