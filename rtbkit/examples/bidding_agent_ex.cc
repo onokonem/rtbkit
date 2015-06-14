@@ -132,7 +132,9 @@ struct FixedPriceBiddingAgent :
         // To make this bidding_agent_ex Smaato compatible
         Json::Value smaatoMap;
         smaatoMap["seat"] = "123";
-        config.providerConfig["smaato"] = smaatoMap;
+        Json::Value providerConfig;
+        providerConfig["smaato"] = smaatoMap;
+        config["providerConfig"] = providerConfig;
 
         // Tell the world about our config. We can change the configuration of
         // an agent at any time by calling this function.
